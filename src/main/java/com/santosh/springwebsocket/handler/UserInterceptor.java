@@ -20,6 +20,7 @@ public class UserInterceptor implements ChannelInterceptor {
                 = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
 
         log.info("accessor headers : " + accessor);
+        
         if (StompCommand.CONNECT.equals(accessor.getCommand())) {
             log.info("************ STOMP COMMAND *****" + accessor.getCommand());
 
@@ -27,7 +28,6 @@ public class UserInterceptor implements ChannelInterceptor {
             log.info("username : {}", username);
 
             String channelCode = (String) accessor.getSessionAttributes().get("channel");
-            String destination = accessor.getDestination();
 
             log.info("Event {}", message.toString());
 

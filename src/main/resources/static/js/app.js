@@ -14,10 +14,10 @@ function setConnected(connected) {
 function connect() {
     var name = $("#name").val();
 
-    var socket = new SockJS('/socket?name=' + name + "&channel=web");
+    var socket = new SockJS('/socket?name=' + name + '&channel=web');
+
     stompClient = Stomp.over(socket);
 
-    //stompClient.connect({username: name, channel: 'web'}, function (frame) {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
@@ -25,7 +25,6 @@ function connect() {
         stompClient.subscribe('/private/reply', function (greeting) {
             showGreeting(JSON.parse(greeting.body).content);
         });
-
     });
 }
 

@@ -28,11 +28,11 @@ public class UserStore {
 
         boolean alreadyRegistered = false;
 
-//        for (User userObj : users) {
-//            if (userObj.getUsername().equalsIgnoreCase(user.getUsername()) && userObj.getChannel().equalsIgnoreCase(user.getChannel())) {
-//                alreadyRegistered = true;
-//            }
-//        }
+        for (User userObj : users) {
+            if (userObj.getUsername().equalsIgnoreCase(user.getUsername()) && userObj.getChannel().equalsIgnoreCase(user.getChannel())) {
+                alreadyRegistered = true;
+            }
+        }
 
         log.info(user + " is added to user store");
 

@@ -26,15 +26,12 @@ public class WsConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-//        registry
-//                .enableStompBrokerRelay(SUBSCRIBE_QUEUE, SUBSCRIBE_USER_REPLY)
-//                .setRelayHost(activemqConfig.getHost())
-//                .setRelayPort(activemqConfig.getPort())
-//                .setClientLogin(activemqConfig.getUser())
-//                .setClientPasscode(activemqConfig.getPassword());
-
         registry
-                .enableSimpleBroker(SUBSCRIBE_QUEUE, SUBSCRIBE_USER_REPLY);
+                .enableStompBrokerRelay(SUBSCRIBE_QUEUE, SUBSCRIBE_USER_REPLY)
+                .setRelayHost(activemqConfig.getHost())
+                .setRelayPort(activemqConfig.getPort())
+                .setClientLogin(activemqConfig.getUser())
+                .setClientPasscode(activemqConfig.getPassword());
 
         registry.setApplicationDestinationPrefixes("/app");
         registry.setUserDestinationPrefix(SUBSCRIBE_USER_PREFIX);
@@ -60,15 +57,17 @@ public class WsConfig implements WebSocketMessageBrokerConfigurer {
     }
 
     //note: required for pesistent connection only when embeeded activemq used
-//    @Bean(initMethod = "start", destroyMethod = "stop")
-//    public BrokerService broker() throws Exception {
-//        final BrokerService broker = new BrokerService();
-//        broker.addConnector("stomp://" + activemqConfig.getHost() + ":" + activemqConfig.getPort());
-//
-//        broker.setPersistent(true);
-//        final ManagementContext managementContext = new ManagementContext();
-//        managementContext.setCreateConnector(true);
-//        broker.setManagementContext(managementContext);
-//        return broker;
-//    }
+    /*
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    public BrokerService broker() throws Exception {
+        final BrokerService broker = new BrokerService();
+        broker.addConnector("stomp://" + activemqConfig.getHost() + ":" + activemqConfig.getPort());
+
+        broker.setPersistent(true);
+        final ManagementContext managementContext = new ManagementContext();
+        managementContext.setCreateConnector(true);
+        broker.setManagementContext(managementContext);
+        return broker;
+    }
+         */
 }

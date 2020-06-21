@@ -81,8 +81,6 @@ public class UserSessionController {
             @Override
             public void run() {
                 messagingTemplate.convertAndSendToUser("santoshweb", WsConfig.SUBSCRIBE_USER_REPLY, new UserResponse("test" + new Date()));
-
-                messagingTemplate.convertAndSendToUser("subashweb", WsConfig.SUBSCRIBE_USER_REPLY, new UserResponse("test" + new Date()));
             }
         }, 5000, 5000, TimeUnit.MILLISECONDS);
     }
